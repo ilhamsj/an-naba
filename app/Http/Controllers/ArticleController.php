@@ -45,7 +45,7 @@ class ArticleController extends Controller
         ]);
 
         $slug = Str::slug($request->title);
-        $name = $slug . '-' . Carbon::now()->format('dmYhis') . '.' . $request->file('cover')->getClientOriginalExtension();
+        $name = $slug . '.' . $request->file('cover')->getClientOriginalExtension();
         $img = $request->file('cover')->storeAs('images', $name, 'public_uploads_v2');
 
         $item = Article::create($request->all());

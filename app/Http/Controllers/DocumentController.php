@@ -56,7 +56,7 @@ class DocumentController extends Controller
             'category' => 'required'
         ]);
 
-        $name = Str::slug($request->title) . '-' . Carbon::now()->format('dmYhis') . '.' . $request->file('file')->getClientOriginalExtension();
+        $name = Str::slug($request->title) . '.' . $request->file('file')->getClientOriginalExtension();
         $img = $request->file('file')->storeAs('images', $name, 'public_uploads_v2');
 
         $item = Document::create($request->all());
