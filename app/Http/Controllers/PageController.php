@@ -26,6 +26,7 @@ class PageController extends Controller
             'articles'  => $this->articles,
             'news'      => $this->news,
             'documents' => $this->documents,
+            'about'     => Article::where('slug', 'tentang-kami')->first(),
         ]);
     }
 

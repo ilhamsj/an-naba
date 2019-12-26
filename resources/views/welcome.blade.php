@@ -30,31 +30,31 @@
 <div class="row">
   @if (count($articles) > 0)
   <div class="col-12" style="margin-bottom: 100px">
-    <strong class="">Tentang <span class="text-primary">{{env('APP_NAME')}}</span></strong>
+    <strong class="">Selamat datang di <span class="text-primary">{{env('APP_NAME')}}</span></strong>
     <hr>
     <h3>
-      <a href="{{ route('user.artikel.show', $articles->last()->slug) }}">{{ $articles->last()->title }}</a>
+      <a href="{{ route('user.artikel.show', $about->slug) }}">{{ $about->title }}</a>
     </h3>
     <span style="font-size: medium">
       <i class="fas fa-calendar-alt"></i>
-      {{ $articles->last()->created_at->format('d F Y') }}
+      {{ $about->created_at->format('d F Y') }}
 
       <i class="fa fa-comments ml-4" aria-hidden="true"></i>
-      {{ count($articles->last()->Review)}}
+      {{ count($about->Review)}}
       Komentar
 
       <i class="fa fa-tag ml-4"></i>
-      <a href="" class=""> {{ $articles->last()->category}}</a>
+      <a href="" class=""> {{ $about->category}}</a>
     </span>
     <p>
       @if (env('APP_ENV') == 'local')
       <img class="img-fluid rounded" data-src="holder.js/1366x768?auto=yes&random=yes&textmode=exact" alt="" srcset="">
       @else
-      <img class="img-fluid rounded" src="{{ $articles->last()->cover }}" alt="" srcset="">
+      <img class="img-fluid rounded" src="{{ $about->cover }}" alt="" srcset="">
       @endif
     </p>
-    {!! strip_tags(Str::limit($articles->last()->content, 100, '')) !!}
-    <a href="{{ route('user.artikel.show', $articles->last()->slug) }}">
+    {!! strip_tags(Str::limit($about->content, 100, '')) !!}
+    <a href="{{ route('user.artikel.show', $about->slug) }}">
       <strong>Pelajari selengkapnya <i class="fa fa-arrow-circle-right" aria-hidden="true"></i> </strong>
     </a>
   </div>
