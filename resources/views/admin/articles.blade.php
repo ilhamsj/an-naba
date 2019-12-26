@@ -91,6 +91,9 @@
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
         <button type="button" class="btn btn-primary" id="">Message</button>
+        <div class="spinner-grow text-danger collapse" id="loading" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
       </div>
     </div>
   </div>
@@ -177,7 +180,8 @@
       // update
       $('#modelId').on('click', '#updateContent', function (e) {
 
-        hapusError()
+        hapusError();
+        $('#loading').show();
 
         var url   = $(this).attr('data-url');
         var form  = $('#modelId').find('form')[0];
@@ -194,12 +198,13 @@
           success: function (response) {
             console.log(response);
             table.draw();
+            $('#loading').hide();
             $('#modelId').modal('hide');
-            showMessage(response.status)
+            showMessage(response.status);
           },
           error: function (xhr) {
             displayError(xhr.responseJSON);
-            console.log(xhr.responseText);
+            $('#loading').hide();
           }
         });
       });
@@ -214,29 +219,33 @@
 
       // store data
       $('#modelId').on('click', '#publishContent', function (e) {
-          e.preventDefault();
+        e.preventDefault();
 
-          var form = $('#modelId').find('form')[0];
-          var data = new FormData(form);
+        $('#loading').show();
 
-          hapusError()
+        var form = $('#modelId').find('form')[0];
+        var data = new FormData(form);
 
-          $.ajax({
-            type: "POST",
-            url: "/api/v1/artikel",
-            data: data,
-            contentType: false,
-            processData: false,
-            cache: false,
-            success: function (response) {
-              console.log(response);
-              table.draw();
-              $('#modelId').modal('hide');
-              showMessage(response.status)
-            },
-            error: function (xhr) {
-                displayError(xhr.responseJSON);
-                console.log(xhr.responseText);
+        hapusError()
+
+        $.ajax({
+          type: "POST",
+          url: "/api/v1/artikel",
+          data: data,
+          contentType: false,
+          processData: false,
+          cache: false,
+          success: function (response) {
+            console.log(response);
+            table.draw();
+            $('#modelId').modal('hide');
+            showMessage(response.status);
+            $('#loading').hide();
+          },
+          error: function (xhr) {
+              displayError(xhr.responseJSON);
+              console.log(xhr.responseText);
+              $('#loading').hide();
           }
         });
       });
