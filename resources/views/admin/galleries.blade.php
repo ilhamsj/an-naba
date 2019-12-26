@@ -44,9 +44,6 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title">Modal title</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
       </div>
       <div class="modal-body">
         <form action="">
@@ -75,6 +72,9 @@
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
         <button type="button" class="btn btn-primary">Save</button>
+        <div class="spinner-grow text-danger collapse" id="loading" role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
       </div>
     </div>
   </div>
@@ -122,10 +122,12 @@
       $('#tambah_data').click(function (e) { 
         e.preventDefault();
         $('#modalDocuments').find('h5').text('Tambah Data')
-        $('#modalDocuments').find('button:last-child').attr('id', 'btnStore').text('Simpan');
+        $('#modalDocuments').find('button').last().attr('id', 'btnStore').text('Simpan');
         $('#modalDocuments').find('img').hide()
         $('#modalDocuments').modal('show');
         $('#modalDocuments').find('form').trigger('reset');
+
+        hapusError();
       });
 
       // store data
@@ -133,6 +135,10 @@
         e.preventDefault();
         var form = $('#modalDocuments').find('form')[0];
         var data = new FormData(form);
+        
+        $('#loading').show();
+
+        hapusError()
 
         $.ajax({
           type: "POST",
@@ -141,10 +147,19 @@
           contentType: false,
           processData: false,
           cache: false,
+          beforeSend: function () {
+            console.log('before send');
+          },
           success: function (response) {
             console.log(response);
             table.draw()
             $('#modalDocuments').modal('hide')
+          },
+          complete: function () {
+            $('#loading').hide();
+          },
+          error: function (xhr) {
+            displayError(xhr.responseJSON, '#modalDocuments');
           }
         });
       });
@@ -153,9 +168,11 @@
       $('table').on('click', '.btnEdit', function (e) {
         e.preventDefault()
 
+        hapusError();
+
         var url = $(this).attr('data-url');
         $('#modalDocuments').find('h5').text('Edit Data')
-        $('#modalDocuments').find('button:last-child').attr('id', 'btnUpdate').attr('data-url', url).text('Perbarui');
+        $('#modalDocuments').find('button').last().attr('id', 'btnUpdate').attr('data-url', url).text('Perbarui');
         $('#modalDocuments').modal('show');
 
         $.ajax({
@@ -170,7 +187,7 @@
                 $(form).find('img').show().attr('src', '../'+value)
               }
             });
-          }
+          },
         }); // end ajax
       });
 
@@ -188,10 +205,19 @@
           contentType: false,
           processData: false,
           cache: false,
+          beforeSend: function () {
+              $('#loading').show();
+          },
           success: function (response) {
             console.log(response);
             table.draw();
             $('#modalDocuments').modal('hide');
+          },
+          error: function (xhr) {
+            displayError(xhr.responseJSON, '#modalDocuments');
+          },
+          complete: function () {
+            $('#loading').hide();
           }
         });
       });      
@@ -207,6 +233,26 @@
       }
       reader.readAsDataURL(event.target.files[0]);
     }
+
+          // show error
+      function displayError(res, target) {
+        if ($.isEmptyObject(res) == false)
+        {
+          $.each(res.errors, function (key, value) {
+              $(target).find('#'+key)
+                .addClass("is-invalid")  
+                .closest('.form-group')
+                .append('<span class="invalid-feedback" role="alert"> <strong>'+ value +'</strong> </span>')
+          })
+        }
+      }
+
+      function hapusError()
+      {
+        $('.invalid-feedback').remove();
+        $('.form-group').find('input').removeClass("is-invalid");
+      }
+
     // end doc ready
 </script>
 @endpush
