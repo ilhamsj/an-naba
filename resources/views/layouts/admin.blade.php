@@ -43,7 +43,7 @@
               'link'  => [
                 'Slider'    => route('admin.gallery'),
                 'Kegiatan'  => route('admin.gallery'),
-                'Dokumen'   => route('admin.document'),
+                'Dokumen'   => route('admin.gallery'),
               ],
             ],
             'Kritik dan Saran' => [
