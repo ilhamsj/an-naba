@@ -33,8 +33,8 @@
             'Blog' => [
               'icon'  => 'fas fa-newspaper',
               'link'  => [
-                'Blog'     => '#',
-                'Kegiatan'    => '#',
+                'Blog'        => route('admin.artikel'),
+                'Kegiatan'    => route('admin.artikel'),
                 'Pengumuman'  => route('admin.artikel'),
               ],
             ],
