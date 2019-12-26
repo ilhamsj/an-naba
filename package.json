@@ -27,6 +27,7 @@
         "bs4-summernote": "^0.8.10",
         "ckeditor": "^4.12.1",
         "jquery": "^3.4.1",
+        "jquery-easy-loading": "^2.0.0-rc.2",
         "magnific-popup": "^1.1.0",
         "popper": "^1.0.1",
         "startbootstrap-clean-blog": "^5.0.8",

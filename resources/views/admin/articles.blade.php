@@ -72,6 +72,9 @@
 
           <div class="form-group">
             <label for="content">Content</label>
+            <div class="spinner-grow text-danger collapse" id="loading_summernote" role="status">
+              <span class="sr-only">Loading...</span>
+            </div>
             <textarea class="form-control" name="content" id="content"
               rows="10">{{ old('content') ? old('content') : '' }}</textarea>
           </div>
@@ -92,8 +95,8 @@
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
         <button type="button" class="btn btn-primary" id="">Message</button>
         <div class="spinner-grow text-danger collapse" id="loading" role="status">
-        <span class="sr-only">Loading...</span>
-      </div>
+          <span class="sr-only">Loading...</span>
+        </div>
       </div>
     </div>
   </div>
@@ -253,7 +256,7 @@
       // summernote
       $('form') .find('#content').summernote({
           tabsize: 2,
-          height: 100,
+          height: 500,
           followingToolbar: false,
           callbacks: {
             onMediaDelete : function(files) {
@@ -262,7 +265,7 @@
               deleteImage(nama_file)
             },
             onImageUpload: function(files) {
-              uploadImage(files[0])
+              uploadImage(files[0]);
             },
           }
       });
@@ -272,9 +275,15 @@
         $.ajax({
           type: "DELETE",
           url: "../api/v1/file/"+file,
+          beforeSend: function (xhr) {
+            $('#loading_summernote').show();
+          },
           success: function (response) {
             console.log(response);
-          }
+          },
+          complete: function () {
+            $('#loading_summernote').hide();
+          },
         });
       }
 
@@ -291,10 +300,18 @@
           cache: false,
           processData: false,
           data: data,
+          beforeSend: function (xhr) {
+            $('#loading_summernote').show();
+            console.log('beforesend');
+          },
           success: function (response) {
-            console.log(response);
+            console.log('success');
             $('form').find('#content').summernote('insertImage', response);
-          }
+          },
+          complete: function () {
+            $('#loading_summernote').hide();
+            console.log('complete');
+          },
         });
       }
 
