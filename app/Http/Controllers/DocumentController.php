@@ -13,7 +13,7 @@ class DocumentController extends Controller
 {
     public function index()
     {
-        $items = Document::whereIn('category', ['Kegiatan', 'Slider'])->get();
+        $items = Document::whereIn('category', ['Kegiatan', 'Slider', ''])->get();
         return datatables($items)
             ->addColumn('action', function ($items) {
                 return
