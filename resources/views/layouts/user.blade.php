@@ -108,7 +108,7 @@
       $footer = [
         env('APP_NAME') => 
         [
-          'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Vero, officiis facilis explicabo hic dolores eaque ut reiciendis eveniet dolore modi ipsa quas velit fugit distinctio laudantium ex iure optio consectetur.' => '',
+          'Made with love in Yogyakarta' => '',
         ],
         'Peta Situs' => [
           'Artikel'        => route('user.artikel.index'),
@@ -121,7 +121,8 @@
           'Instagram'    => route('user.kegiatan.index'),
         ],
         'Gabung' => [
-          'Artikel'        => route('user.artikel.index'),
+          'Grub Facebook'        => route('user.artikel.index'),
+          'Telegram'        => route('user.artikel.index'),
         ],
       ];
   @endphp
@@ -145,6 +146,9 @@
             @endif
           </div>
         @endforeach
+        <div class="col-12 mt-4">
+          <i class="fa fa-copyright" aria-hidden="true"></i> {{ env('APP_NAME')  . date(' Y')}}
+        </div>
       </div>
     </div>
   </footer>  
@@ -173,7 +177,7 @@
       }
     }
 
-    $('#laravel').toggleClass('col col-6')
+    $('#laravel').toggleClass('col col-5')
 
   });
 

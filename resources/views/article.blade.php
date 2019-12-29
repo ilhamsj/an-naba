@@ -23,7 +23,7 @@
 @endsection
 
 @section('content')
-  <div class="card mb-4 p-0">
+  <div class="card mb-4 p-0 border-0 shadow-sm">
     <img class="card-img-top img-fluid" src="../{{$item->cover}}" alt="" srcset="">
     <div class="card-body" id="content">
       {!! $item->content !!}
