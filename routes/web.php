@@ -37,3 +37,9 @@ Route::group(['prefix' => 'pengumuman'], function () {
 
 Route::get('/dokumen', 'PageController@dokumen_index')->name('user.dokumen.index');
 Route::get('/kegiatan', 'PageController@dokumen_kegiatan')->name('user.kegiatan.index');
+
+
+Route::group(['prefix' => 'sitemap'], function () {
+  Route::get('/', 'SitemapController@index');
+  Route::get('/articles', 'SitemapController@articles');
+});
