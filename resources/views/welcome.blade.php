@@ -10,7 +10,7 @@
       @foreach ($slider as $item)
       @if (env('APP_ENV') == 'local')
       <div class="swiper-slide text-center" style="max-height:100vh">
-        <img class="img-fluid" data-src="holder.js/1366x768?auto=yes&random=yes&textmode=exact" alt="" srcset="">
+        <img class="img-fluid" data-src="holder.js/1366x568?auto=yes&random=yes&textmode=exact" alt="" srcset="">
       </div>
       @else
       <div class="swiper-slide text-center" style="max-height:100vh">
@@ -28,67 +28,12 @@
 
 @section('content')
 <div class="row">
-  @if (count($articles) > 0)
-  <div class="col-12" style="margin-bottom: 100px">
-    <strong class="">Selamat datang di <span class="text-primary">{{env('APP_NAME')}}</span></strong>
-    <hr>
-    <h3>
-      <a href="{{ route('user.artikel.show', $about->slug) }}">{{ $about->title }}</a>
-    </h3>
-    <span style="font-size: medium">
-      <i class="fas fa-calendar-alt"></i>
-      {{ $about->created_at->format('d F Y') }}
-
-      <i class="fa fa-comments ml-4" aria-hidden="true"></i>
-      {{ count($about->Review)}}
-      Komentar
-
-      <i class="fa fa-tag ml-4"></i>
-      <a href="" class=""> {{ $about->category}}</a>
-    </span>
-    <p>
-      @if (env('APP_ENV') == 'local')
-      <img class="img-fluid rounded" data-src="holder.js/1366x768?auto=yes&random=yes&textmode=exact" alt="" srcset="">
-      @else
-      <img class="img-fluid rounded" src="{{ $about->cover }}" alt="" srcset="">
-      @endif
-    </p>
-    {!! strip_tags(Str::limit($about->content, 100, '')) !!}
-    <a href="{{ route('user.artikel.show', $about->slug) }}">
-      <strong>Pelajari selengkapnya <i class="fa fa-arrow-circle-right" aria-hidden="true"></i> </strong>
-    </a>
-  </div>
-  @endif
-  {{-- Post --}}
-  <div class="col-12">
-    <strong class="">Postingan <span class="text-primary">Terbaru</span></strong>
-    <hr>
-  </div>
   @foreach ($articles as $item)
     @include('include.articles')
   @endforeach
 </div>
 @endsection
 
-@section('gallery')
-<section>
-  <div class="container" style="margin: 100px auto">
-    <div class="row">
-      <div class="col">
-        <div class="row parent-container">
-          <div class="col-12">
-            <strong class="">Galeri <span class="text-primary">Kegiatan</span></strong>
-            <hr>
-          </div>
-          @foreach ($photos as $item)
-            @include('include.galleries')
-          @endforeach
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-@endsection
 
 @push('styles')
 <link rel="stylesheet" href="{{ secure_url('vendor/swiper.min.css') }}">

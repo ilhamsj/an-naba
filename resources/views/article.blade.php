@@ -11,17 +11,9 @@
         <div class="post-heading">
           <h1>{{ Str::title($item->title) }}</h1>
           <span class="meta">
-            <i class="fas fa-user"></i>
-            Posted by <a href="#">Admin</a>
-            
-            <i class="fas fa-calendar-alt ml-4"></i>
-            on {{ $item->created_at->format('F d, Y') }}
-            
-            <i class="fa fa-tag ml-4"></i>
-            at <a href="#">{{ $item->category}}</a>
-            
-            <i class="fa fa-comments ml-4" aria-hidden="true"></i>
-            {{ count($item->Review) }} Komentar
+            <p>
+              {{ $item->created_at->format('F d, Y') }} <br/>{{ $item->category}}</a>
+            </p>
           </span>
         </div>
       </div>
