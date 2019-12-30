@@ -134,7 +134,7 @@
       $('#tambah_data').click(function (e) { 
         e.preventDefault();
         $('#modalDocuments').find('h5').text('Tambah Data')
-        $('#modalDocuments').find('button:last-child').attr('id', 'btnStore').text('Simpan');
+        $('#modalDocuments').find('.modal-footer > button:last-child').attr('id', 'btnStore').text('Simpan');
         $('#modalDocuments').modal('show');
         $('#modalDocuments').find('form').trigger('reset');
       });
@@ -142,6 +142,8 @@
       // store data
       $('#modalDocuments').on('click', '#btnStore', function (e) {
         e.preventDefault();
+
+        hapusError()
         var data = $('#modalDocuments').find('form').serialize()
 
         $.ajax({
@@ -154,9 +156,7 @@
             $('#modalDocuments').modal('hide')
           },
           error: function (xhr) {
-            $.each(xhr.responseJSON.errors, function (index, value) { 
-              alert(value[0])
-            });
+            showError(xhr.responseJSON.errors)
           }
         });
       });
@@ -167,7 +167,7 @@
 
         var url = $(this).attr('data-url');
 
-        $('#modalDocuments').find('button:last-child').attr('id', 'btnUpdate').attr('data-url', url).text('Perbarui');
+        $('#modalDocuments').find('.modal-footer > button:last-child').attr('id', 'btnUpdate').attr('data-url', url).text('Perbarui');
         $('#modalDocuments').modal('show');
         $('#modalDocuments').find('h5').text('Edit Data')
 
@@ -187,6 +187,7 @@
       $('#modalDocuments').on('click', '#btnUpdate', function (e) {
         e.preventDefault();
         var data = $('#modalDocuments').find('form').serialize();
+        hapusError()
 
         $.ajax({
           type: "PUT",
@@ -199,12 +200,26 @@
             $('#modalDocuments').modal('hide');
           },
           error: function (xhr) {
-            $.each(xhr.responseJSON.errors, function (index, value) { 
-              alert(value[0])
-            });
+            showError(xhr.responseJSON.errors)
           }
         });
       });      
+
+      function showError(errors) {
+          $.each(errors, function (index, value) { 
+            $('#'+index).addClass('is-invalid')
+            $('#'+index)
+            .closest('.form-group')
+            .append('<span class="invalid-feedback" role="alert"> <strong>'+ value +'</strong> </span>')
+          });
+      }
+
+      function hapusError()
+      {
+        $('.invalid-feedback').remove();
+        $('.form-group').find('input').removeClass("is-invalid");
+        $('.form-group').find('.note-editor').removeClass("is-invalid");
+      }
     });
     // end doc ready
 </script>

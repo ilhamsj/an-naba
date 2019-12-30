@@ -16,10 +16,10 @@ class UserController extends Controller
         return datatables($items)
             ->addIndexColumn()
             ->addColumn('action', function ($items) {
-                return 
-                '
-                    <a href="" class="btnEdit mx-0 btn btn-secondary btn-sm btn-icon-split" data-url="'.route('user.destroy', $items->id).'"> <span class="icon text-white-50"> <i class="fas fa-pencil-alt"></i> </span> </a>
-                    <a href="" class="btnDelete btn btn-danger btn-icon-split btn-sm" data-url="'.route('user.destroy', $items->id).'"><span class="icon text-white-50"> <i class="fas fa-trash-alt"></i> </span></a>
+                return
+                    '
+                    <a href="" class="btnEdit mx-0 btn btn-secondary btn-sm btn-icon-split" data-url="' . route('user.destroy', $items->id) . '"> <span class="icon text-white-50"> <i class="fas fa-pencil-alt"></i> </span> </a>
+                    <a href="" class="btnDelete btn btn-danger btn-icon-split btn-sm" data-url="' . route('user.destroy', $items->id) . '"><span class="icon text-white-50"> <i class="fas fa-trash-alt"></i> </span></a>
                 ';
             })
             ->toJson();
@@ -43,7 +43,7 @@ class UserController extends Controller
             'password' => bcrypt($request->password)
         ]);
         $item = User::create($request->all());
-        
+
         return response()->json([
             'item'  => $request->all(),
             'status' => 'Store Success'
@@ -57,22 +57,21 @@ class UserController extends Controller
 
     public function edit($id)
     {
-
     }
 
     public function update(Request $request, $id)
     {
         $item = User::find($id);
         $request->validate([
-            'name'      => [Rule::requiredIf($request->has('name')), 'string','max:255'],
+            'name'      => [Rule::requiredIf($request->has('name')), 'string', 'max:255'],
             'email'     => [Rule::requiredIf($request->has('email')), 'email'],
-            'password'  => [Rule::requiredIf($request->has('password')), 'confirmed'],
             'role'      => [Rule::requiredIf($request->has('role'))],
         ]);
 
         $request->merge([
-            'password' => bcrypt($request->password)
+            'password' => $request->has('password') ? bcrypt($request->password) : $item->password
         ]);
+
         $item->update($request->all());
 
         return response()->json([

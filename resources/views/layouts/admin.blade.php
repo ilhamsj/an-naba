@@ -32,19 +32,11 @@
             ],
             'Blog' => [
               'icon'  => 'fas fa-newspaper',
-              'link'  => [
-                'Blog'        => route('admin.artikel'),
-                'Kegiatan'    => route('admin.artikel'),
-                'Pengumuman'  => route('admin.artikel'),
-              ],
+              'link'  => route('admin.artikel'),
             ],
             'Galeri' => [
               'icon'  => 'fas fa-image',
-              'link'  => [
-                'Slider'    => route('admin.gallery'),
-                'Kegiatan'  => route('admin.gallery'),
-                'Dokumen'   => route('admin.gallery'),
-              ],
+              'link'  => route('admin.gallery'),
             ],
             'Kritik dan Saran' => [
               'icon'  => 'fa fa-comments',
