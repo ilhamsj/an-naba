@@ -96,9 +96,10 @@
         <div class="card mb-4 border-0">
           <ul class="list-group list-group-flush">
             @foreach ($news as $item)
-              <li class="list-group-item px-0 mb-1">
+              <li class="list-group-item px-0 mb-1" style="font-size: medium">
+                <img src="{{ secure_url($item->cover) }}" class="rounded" style="max-height: 70px" alt="" srcset=""> <br/>
                 <span class="" style="font-size: small">{{ $item->created_at->format('d F Y') }}</span> <br/>
-                <a href="{{ route('user.artikel.show', $item->slug) }}">{{ $item->title }}</a> <br/>
+                <a class="" style="font-weight: 500" href="{{ strip_tags(route('user.artikel.show', $item->slug)) }}">{{ $item->title }}</a> <br/>
               </li>
             @endforeach
           </ul>
@@ -112,13 +113,13 @@
       $footer = [
         env('APP_NAME') => 
         [
-          'Made with love in Yogyakarta' => '#',
+          env('APP_MOTTO') => '#',
         ],
         'Peta Situs' => [
           'Blog'       => route('user.artikel.index'),
           'Kegiatan'      => route('user.artikel.index'),
         ],
-        'Ikuti '. env('APP_NAME') => [
+        'Ikuti Kami' => [
           'Facebook'      => route('user.artikel.index'),
           'Instagram'     => route('user.artikel.index'),
         ],
@@ -156,7 +157,8 @@
       <div class="row justify-content-center">
         <div class="col-12">
           <a href="" class="text-light">
-            <i class="fa fa-copyright" aria-hidden="true"></i> {{ env('APP_NAME')  . date(' Y')}}
+            {{-- <i class="fa fa-copyright" aria-hidden="true"></i> {{ env('APP_NAME')  . date(' Y')}} --}}
+            Made with <i class="fa fa-heartbeat" aria-hidden="true"></i> in Yogyakarta, Indonesia
           </a>
         </div>
       </div>
@@ -187,7 +189,7 @@
       }
     }
 
-    $('#laravel').toggleClass('col-md col-md-5')
+    $('footer').first().find('.col-6:first-child').toggleClass('col-md col-md-5')
 
   });
 

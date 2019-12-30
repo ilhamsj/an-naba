@@ -24,7 +24,9 @@
 
 @section('content')
   <div class="card mb-4 p-0 border-0 shadow-sm">
-    <img class="card-img-top img-fluid" src="../{{$item->cover}}" alt="" srcset="">
+    <div class="card-body">
+        <img class="img-fluid rounded" src="../{{$item->cover}}" alt="" srcset="">
+    </div>
     <div class="card-body" id="content">
       {!! $item->content !!}
     </div>
@@ -34,7 +36,7 @@
     <div class="card-body">
       <h2 class="card-title">
         <i class="fa fa-comments" aria-hidden="true"></i>
-        {{ count($item->Review) }} Komentar
+        {{ count($item->Review) }} Diskusi
       </h2>
     </div>
     <ul class="list-group list-group-flush">
@@ -44,7 +46,16 @@
           <i class="fas fa-person-booth"></i>
           {{ $value->user->name }}</h3>
         <span class="badge badge-light"><i class="fas fa-calendar-alt"></i> {{ $value->created_at->format('F d, Y') }}</span>
-        <p>{{ strip_tags($value->content) }}</p>
+        <p>
+          {{ strip_tags($value->content) }}
+          @auth
+          @if (Auth::user()->id == $value->user_id)
+          <a href="" class="komentar">
+            <i class="fas fa-trash-alt    "></i>
+          </a>
+          @endif
+          @endauth
+        </p>
       </li>
       @endforeach
     </ul>
@@ -136,6 +147,9 @@
         });
       }
     });
+  });
+
+
   });
 </script>
 @endpush

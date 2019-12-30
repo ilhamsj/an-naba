@@ -9,11 +9,11 @@
     <div class="swiper-wrapper">
       @foreach ($slider as $item)
       @if (env('APP_ENV') == 'local')
-      <div class="swiper-slide text-center" style="max-height:100vh">
+      <div class="swiper-slide text-center" style="max-height:70vh">
         <img class="img-fluid" data-src="holder.js/1366x568?auto=yes&random=yes&textmode=exact" alt="" srcset="">
       </div>
       @else
-      <div class="swiper-slide text-center" style="max-height:100vh">
+      <div class="swiper-slide text-center" style="max-height:70vh">
         <img class="img-fluid" src="{{$item->file}}" alt="" srcset="">
       </div>
       @endif

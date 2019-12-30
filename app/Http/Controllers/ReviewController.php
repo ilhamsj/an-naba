@@ -13,10 +13,10 @@ class ReviewController extends Controller
     {
         $items = Review::where('category', 'Review')->get();
         return datatables($items)
-            ->addColumn('name', function($items) {
+            ->addColumn('name', function ($items) {
                 return $items->user->name;
             })
-            ->addColumn('email', function($items) {
+            ->addColumn('email', function ($items) {
                 return $items->user->email;
             })
             ->rawColumns(['user_id', 'name', 'email'])
@@ -34,7 +34,7 @@ class ReviewController extends Controller
 
         $item = Review::create($request->all());
 
-        if ($request->category == 'Komentar'):
+        if ($request->category == 'Komentar') :
             $comment = ArticleComment::create([
                 'article_id'    => $request->article_id,
                 'review_id'     => $item->id,
@@ -43,6 +43,16 @@ class ReviewController extends Controller
 
         return response()->json([
             'status' => $request->category . ' Success'
+        ]);
+    }
+
+    public function destroy($id)
+    {
+        $item = ArticleComment::find($id);
+
+        return response()->json([
+            'item'      => $item,
+            'status'    => 'Delete Success'
         ]);
     }
 }
