@@ -51,17 +51,10 @@
         <form action="" method="post">
           @csrf
 
-          @php
-          $category = ['Blog', 'Kegiatan', 'Pengumuman'];
-          @endphp
-
           <div class="form-group">
             <label for="">Kategori</label>
-            <select class="form-control" name="category" id="category">
-              @foreach ($category as $item)
-              <option value="{{ $item }}">{{ $item }}</option>
-              @endforeach
-            </select>
+            <input type="text" name="category" id="category" class="form-control @error('category') is-invalid @enderror"
+              placeholder="" value="{{ old('email') ? old('email') : '' }}">
           </div>
 
           <div class="form-group">

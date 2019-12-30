@@ -48,15 +48,6 @@
 <script>
   $(document).ready(function() {
 
-    // gallery
-    $('.parent-container').magnificPopup({
-      delegate: 'img',
-      type: 'image',
-      gallery: {
-        enabled: true
-      }
-    });
-
     // swi
     var swiper = new Swiper('.swiper-container', {
       spaceBetween: 30,

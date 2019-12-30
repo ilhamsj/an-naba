@@ -48,13 +48,13 @@
             'icon'  => 'fas fa-fw fa-tachometer-alt',
             'link'  => route('welcome'),
           ],
-          'Profil' => [
+          'Blog' => [
             'icon'  => 'fas fa-fw fa-tachometer-alt',
-            'link'  => route('user.artikel.show', 'tentang-kami'),
+            'link'  => route('user.artikel.index'),
           ],
           'Kegiatan' => [
             'icon'  => 'fas fa-fw fa-tachometer-alt',
-            'link'  => route('user.kegiatan.index'),
+            'link'  => '#',
           ],
           'Kontak' => [
             'icon'  => 'fas fa-fw fa-tachometer-alt',
@@ -112,17 +112,15 @@
       $footer = [
         env('APP_NAME') => 
         [
-          'Made with love in Yogyakarta' => '',
+          'Made with love in Yogyakarta' => '#',
         ],
         'Peta Situs' => [
-          'Artikel'       => route('user.artikel.index'),
-          'Kegiatan'      => route('user.kegiatan.index'),
-          'Pengumuman'    => route('user.pengumuman.index'),
-          'Dokumen'       => route('user.dokumen.index'),
+          'Blog'       => route('user.artikel.index'),
+          'Kegiatan'      => route('user.artikel.index'),
         ],
         'Ikuti '. env('APP_NAME') => [
           'Facebook'      => route('user.artikel.index'),
-          'Instagram'     => route('user.kegiatan.index'),
+          'Instagram'     => route('user.artikel.index'),
         ],
         'Gabung' => [
           'Grub Facebook' => route('user.artikel.index'),
@@ -131,11 +129,11 @@
       ];
   @endphp
   <!-- Footer -->
-  <footer style="background-color: #1b4b72" class="text-light">
+  <footer style="background-color: #00428A" class="text-light">
     <div class="container">
       <div class="row justify-content-center">
         @foreach ($footer as $key => $val)
-          <div class="col" id="{{ Str::slug($key) }}">
+          <div class="col-6 col-md mb-4" id="{{ Str::slug($key) }}">
             <h4>{!! strtoupper($key) !!}</h4>
             @if (is_array($val))
             <ul class="nav flex-column">
@@ -153,7 +151,7 @@
       </div>
     </div>
   </footer>  
-  <footer style="background-color: #1b4b72" class="text-light">
+  <footer style="background-color: #00428A" class="text-light">
     <div class="container">
       <div class="row justify-content-center">
         <div class="col-12">
@@ -189,7 +187,7 @@
       }
     }
 
-    $('#laravel').toggleClass('col col-5')
+    $('#laravel').toggleClass('col-md col-md-5')
 
   });
 

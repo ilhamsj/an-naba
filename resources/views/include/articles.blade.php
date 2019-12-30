@@ -8,11 +8,7 @@
 <div class="col-12 col-sm-6 mb-4">
   <p>
     <h3>
-      @if (URL::current() == route('user.pengumuman.index'))
-        <a href="{{ route('user.pengumuman.show', $item->slug) }}">{{ $item->title }}</a>
-      @else
         <a href="{{ route('user.artikel.show', $item->slug) }}">{{ $item->title }}</a>
-      @endif
     </h3>
     <span style="font-size: medium">
       <i class="fas fa-calendar-alt"></i>

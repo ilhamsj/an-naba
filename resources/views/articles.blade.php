@@ -19,14 +19,6 @@
 
 @section('content')
 <div class="row">
-  {{-- Post --}}
-  <div class="col-12">
-    <strong class="">
-      {{ Str::title(Str::after(URL::current(), env('APP_URL'))) }}
-      <span class="text-primary">Terbaru</span>
-    </strong>
-    <hr>
-  </div>
   @foreach ($articles as $item)
     @include('include.articles')
   @endforeach

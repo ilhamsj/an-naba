@@ -153,7 +153,8 @@
           success: function (response) {
             console.log(response);
             table.draw()
-            $('#modalDocuments').modal('hide')
+            $('#modalDocuments').modal('hide');
+            showMessage(response.status)
           },
           error: function (xhr) {
             showError(xhr.responseJSON.errors)
@@ -198,6 +199,7 @@
             table.draw();
             $('#modalDocuments').find('form').trigger('reset');
             $('#modalDocuments').modal('hide');
+            showMessage(response.status)
           },
           error: function (xhr) {
             showError(xhr.responseJSON.errors)

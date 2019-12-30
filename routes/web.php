@@ -25,21 +25,12 @@ Route::group(['prefix' => 'admin'], function () {
   Route::get('user', 'AdminController@users')->name('admin.user');
 });
 
-Route::group(['prefix' => 'artikel'], function () {
+Route::group(['prefix' => 'blog'], function () {
   Route::get('/', 'PageController@artikel_index')->name('user.artikel.index');
   Route::get('/{id}', 'PageController@artikel_show')->name('user.artikel.show');
 });
 
-Route::group(['prefix' => 'pengumuman'], function () {
-  Route::get('/', 'PageController@artikel_pengumuman')->name('user.pengumuman.index');
-  Route::get('/{id}', 'PageController@artikel_show')->name('user.pengumuman.show');
-});
-
-Route::get('/dokumen', 'PageController@dokumen_index')->name('user.dokumen.index');
-Route::get('/kegiatan', 'PageController@dokumen_kegiatan')->name('user.kegiatan.index');
-
-
 Route::group(['prefix' => 'sitemap'], function () {
   Route::get('/', 'SitemapController@index');
-  Route::get('/articles', 'SitemapController@articles');
+  Route::get('/blog', 'SitemapController@articles');
 });
