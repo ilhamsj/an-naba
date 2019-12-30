@@ -84,7 +84,7 @@ class ArticleController extends Controller
 
             file_exists($item->cover) ? unlink($item->cover) : '';
 
-            $name = $slug . '-' . Carbon::now()->format('dmYhis') . '.' . $request->file('cover')->getClientOriginalExtension();
+            $name = $slug . '.' . $request->file('cover')->getClientOriginalExtension();
             $img = $request->file('cover')->storeAs('images', $name, 'public_uploads_v2');
 
             $item->update($request->all());
