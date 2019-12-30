@@ -19,6 +19,9 @@
       bottom: 0;
       right: 100px;
     }
+    * {
+      font-family: 'Poppins'
+    }
   </style>
   @stack('styles')
 </head>
@@ -83,6 +86,7 @@
   </nav>
 
   @yield('header')
+
   <div class="container" style="margin: 10vh auto">
     <div class="row">
       <div class="col-12 col-sm-9" id="ini_content">
@@ -111,18 +115,18 @@
           'Made with love in Yogyakarta' => '',
         ],
         'Peta Situs' => [
-          'Artikel'        => route('user.artikel.index'),
-          'Kegiatan'    => route('user.kegiatan.index'),
-          'Pengumuman'  => route('user.pengumuman.index'),
-          'Dokumen'     => route('user.dokumen.index'),
+          'Artikel'       => route('user.artikel.index'),
+          'Kegiatan'      => route('user.kegiatan.index'),
+          'Pengumuman'    => route('user.pengumuman.index'),
+          'Dokumen'       => route('user.dokumen.index'),
         ],
         'Ikuti '. env('APP_NAME') => [
-          'Facebook'        => route('user.artikel.index'),
-          'Instagram'    => route('user.kegiatan.index'),
+          'Facebook'      => route('user.artikel.index'),
+          'Instagram'     => route('user.kegiatan.index'),
         ],
         'Gabung' => [
-          'Grub Facebook'        => route('user.artikel.index'),
-          'Telegram'        => route('user.artikel.index'),
+          'Grub Facebook' => route('user.artikel.index'),
+          'Telegram'      => route('user.artikel.index'),
         ],
       ];
   @endphp

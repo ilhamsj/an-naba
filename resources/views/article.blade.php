@@ -30,7 +30,7 @@
     </div>
   </div>
 
-  <div class="card mb-4">
+  <div class="card border-0 shadow-sm mb-4">
     <div class="card-body">
       <h2 class="card-title">
         <i class="fa fa-comments" aria-hidden="true"></i>
@@ -50,7 +50,7 @@
     </ul>
   </div>
 
-  <div class="card">
+  <div class="card border-0 shadow-sm">
     <div class="card-body">
       <h2 class="card-title">
         Tulis Komentar
@@ -113,8 +113,6 @@
 
 @push('scripts')
 <script>
-
-  // $('#content').find('span').removeAttr('style');
   $('#content').find('p').removeAttr('style');
   $('#content').find('img').toggleClass('note-float-right rounded img-fluid').removeAttr('style');
   
