@@ -150,8 +150,16 @@
             @endif
           </div>
         @endforeach
-        <div class="col-12 mt-4">
-          <i class="fa fa-copyright" aria-hidden="true"></i> {{ env('APP_NAME')  . date(' Y')}}
+      </div>
+    </div>
+  </footer>  
+  <footer style="background-color: #1b4b72" class="text-light">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-12">
+          <a href="" class="text-light">
+            <i class="fa fa-copyright" aria-hidden="true"></i> {{ env('APP_NAME')  . date(' Y')}}
+          </a>
         </div>
       </div>
     </div>

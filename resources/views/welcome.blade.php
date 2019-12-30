@@ -1,6 +1,6 @@
 @extends('layouts.user')
 
-@section('title_page', 'Welcome')
+@section('title_page', env('APP_MOTTO'))
 
 @section('header')
 <header class="masthead">
