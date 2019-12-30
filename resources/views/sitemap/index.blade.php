@@ -4,8 +4,4 @@
       <loc>{{ url('sitemap/blog') }}</loc>
       <lastmod>{{ $post->created_at->toAtomString() }}</lastmod>
     </sitemap>
-    <sitemap>
-      <loc>{{ url('sitemap/galeri') }}</loc>
-      <lastmod>{{ $post->created_at->toAtomString() }}</lastmod>
-    </sitemap>
   </sitemapindex>
