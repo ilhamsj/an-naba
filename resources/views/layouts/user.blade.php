@@ -8,7 +8,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
-  <meta name="google-site-verification" content="X992wX_b2CEsO4oVmh2PPo53029pbnXqtsZ8345KN14" />
+  <meta name="google-site-verification" content="{{ env('GOOGLE_VERIVICATION')}}" />
   <title>@yield('title_page') | {{ env('APP_NAME') }}</title>
   <link href='{{ secure_url('vendor/Lora.css') }}' rel='stylesheet' type='text/css'>
   <link href='{{ secure_url('vendor/Open-Sans.css') }}' rel='stylesheet' type='text/css'>
@@ -111,8 +111,7 @@
   
   @php
       $footer = [
-        env('APP_NAME') => 
-        [
+        env('APP_NAME') => [
           env('APP_MOTTO') => '#',
         ],
         'Peta Situs' => [

@@ -121,9 +121,12 @@
   }
 
 #content {
-    font-family: Arial, Helvetica, sans-serif;
     font-size: 12pt;
     text-align: justify;
+  }
+
+  .masthead {
+    background: linear-gradient(87deg,#5e72e4,#825ee4)!important;
   }
 </style>
 @endpush
