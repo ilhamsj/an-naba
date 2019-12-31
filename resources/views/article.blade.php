@@ -119,6 +119,12 @@
     top: -155px;
     position: relative;
   }
+
+#content {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12pt;
+    text-align: justify;
+  }
 </style>
 @endpush
 
