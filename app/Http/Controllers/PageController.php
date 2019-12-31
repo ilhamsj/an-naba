@@ -15,7 +15,7 @@ class PageController extends Controller
     public function welcome()
     {
         return view('welcome')->with([
-            'articles'  => Article::all(),
+            'articles'  => Article::orderBy('updated_at', 'desc')->get(),
             'slider'    => Document::where('category', 'slider')->get(),
             'news'      => Article::paginate(5),
         ]);
@@ -24,7 +24,7 @@ class PageController extends Controller
     public function artikel_index()
     {
         return view('articles')->with([
-            'articles'  => Article::all(),
+            'articles'  => Article::orderBy('updated_at', 'desc')->get(),
             'news'      => Article::paginate(5),
         ]);
     }
