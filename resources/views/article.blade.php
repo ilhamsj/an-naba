@@ -6,16 +6,9 @@
 <header class="masthead" style="background-color: #32373D">
   <div class="overlay"></div>
   <div class="container">
-    <div class="row">
+    <div class="row" style="min-height: 50vh">
       <div class="col-lg col-md-10 mx-auto">
-        <div class="post-heading">
-          <h1>{{ Str::title($item->title) }}</h1>
-          <span class="meta">
-            <p>
-              {{ $item->created_at->format('F d, Y') }} <br/>{{ $item->category}}</a>
-            </p>
-          </span>
-        </div>
+
       </div>
     </div>
   </div>
@@ -24,6 +17,16 @@
 
 @section('content')
   <div class="card mb-4 p-0 border-0 shadow-sm">
+    <div class="card-body">
+      <h1>{{ Str::title($item->title) }}</h1>
+      <p>
+        <i class="fa fa-calendar"></i>
+        {{ $item->created_at->format('F d, Y') }} 
+        <br/>
+        <i class="fa fa-tag" aria-hidden="true"></i>
+        {{ $item->category}}
+      </p>
+    </div>
     <div class="card-body">
         <img class="img-fluid rounded" src="../{{$item->cover}}" alt="" srcset="">
     </div>

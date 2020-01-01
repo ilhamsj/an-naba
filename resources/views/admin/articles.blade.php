@@ -152,7 +152,7 @@
         var url   = $(this).attr('href')
         var modal = $('#modelId').modal('show');
 
-        $('#modelId').find('.modal-footer > button:nth-child(2)').text('updateContent').attr('id', 'updateContent').attr('data-url', url);
+        $('#modelId').find('.modal-footer > button:nth-child(2)').text('Update').attr('id', 'updateContent').attr('data-url', url);
 
         $.ajax({
           type: "GET",
