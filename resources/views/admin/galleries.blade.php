@@ -51,14 +51,10 @@
             <label for="">Judul</label>
             <input type="text" name="title" id="title" class="form-control" placeholder="" aria-describedby="helpId">
           </div>
-
+          
           <div class="form-group">
             <label for="">Kategori</label>
-            <select class="form-control" name="category" id="category">
-              <option value="Slider">Slider</option>
-              <option value="Kegiatan">Kegiatan</option>
-              <option value="Dokumen">Dokumen</option>
-            </select>
+            <input type="text" name="category" id="category" class="form-control" placeholder="" aria-describedby="helpId">
           </div>
 
           <div class="form-group">

@@ -53,30 +53,30 @@
           
           <!-- name -->
           <div class="form-group">
-            <label for="name">name</label>
+            <label for="name">Nama</label>
             <input type="text" name="name" id="name" class="form-control" placeholder="" aria-describedby="helpId">
           </div>
           
           <!-- email -->
           <div class="form-group">
-            <label for="email">email</label>
+            <label for="email">Email</label>
             <input type="email" name="email" id="email" class="form-control" placeholder="" aria-describedby="helpId">
           </div>
           
           <!-- password -->
           <div class="form-group">
-            <label for="password">password</label>
+            <label for="password">Password</label>
             <input type="password" name="password" id="password" class="form-control" placeholder="" aria-describedby="helpId">
           </div>
           
           <!-- password_confirmation -->
           <div class="form-group">
-            <label for="password_confirmation">password_confirmation</label>
+            <label for="password_confirmation">Konfirmasi Password</label>
             <input type="password" name="password_confirmation" id="password_confirmation" class="form-control" placeholder="" aria-describedby="helpId">
           </div>
 
           <div class="form-group">
-            <label for="role">role</label>
+            <label for="role">Role</label>
             <select class="form-control" name="role" id="role">
               <option value="admin">admin</option>
               <option value="user">user</option>
@@ -87,6 +87,9 @@
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
         <button type="button" class="btn btn-primary">Save</button>
+        <div class="spinner-grow text-danger collapse" id="loading" role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
       </div>
     </div>
   </div>
@@ -133,8 +136,9 @@
       // create / show modal
       $('#tambah_data').click(function (e) { 
         e.preventDefault();
+        hapusError()
         $('#modalDocuments').find('h5').text('Tambah Data')
-        $('#modalDocuments').find('.modal-footer > button:last-child').attr('id', 'btnStore').text('Simpan');
+        $('#modalDocuments').find('.modal-footer button.btn.btn-primary').attr('id', 'btnStore').text('Simpan');
         $('#modalDocuments').modal('show');
         $('#modalDocuments').find('form').trigger('reset');
       });
@@ -145,6 +149,7 @@
 
         hapusError()
         var data = $('#modalDocuments').find('form').serialize()
+        $('#loading').show()
 
         $.ajax({
           type: "POST",
@@ -154,10 +159,12 @@
             console.log(response);
             table.draw()
             $('#modalDocuments').modal('hide');
-            showMessage(response.status)
+            showMessage(response.status);
+            $('#loading').hide()
           },
           error: function (xhr) {
             showError(xhr.responseJSON.errors)
+            $('#loading').hide()
           }
         });
       });
@@ -166,9 +173,10 @@
       $('table').on('click', '.btnEdit', function (e) {
         e.preventDefault()
 
+        hapusError();
         var url = $(this).attr('data-url');
 
-        $('#modalDocuments').find('.modal-footer > button:last-child').attr('id', 'btnUpdate').attr('data-url', url).text('Perbarui');
+        $('#modalDocuments').find('.modal-footer button.btn.btn-primary').attr('id', 'btnUpdate').attr('data-url', url).text('Perbarui');
         $('#modalDocuments').modal('show');
         $('#modalDocuments').find('h5').text('Edit Data')
 
@@ -189,6 +197,7 @@
         e.preventDefault();
         var data = $('#modalDocuments').find('form').serialize();
         hapusError()
+        $('#loading').show()
 
         $.ajax({
           type: "PUT",
@@ -199,9 +208,11 @@
             table.draw();
             $('#modalDocuments').find('form').trigger('reset');
             $('#modalDocuments').modal('hide');
-            showMessage(response.status)
+            showMessage(response.status);
+            $('#loading').hide()
           },
           error: function (xhr) {
+            $('#loading').hide()
             showError(xhr.responseJSON.errors)
           }
         });
