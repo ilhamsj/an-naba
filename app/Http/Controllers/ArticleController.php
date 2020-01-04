@@ -42,7 +42,7 @@ class ArticleController extends Controller
         $request->validate([
             'title'     => 'required|min:10|max:100|unique:articles',
             'content'   => 'required|min:200',
-            'category'  => 'required',
+            'category_id'  => 'required',
             'cover'     => 'required',
         ]);
 
@@ -75,7 +75,7 @@ class ArticleController extends Controller
         $request->validate([
             'title'     => Rule::requiredIf($request->has('title')),
             'content'   => Rule::requiredIf($request->has('content')),
-            'category'  => Rule::requiredIf($request->has('category')),
+            'category_id'  => Rule::requiredIf($request->has('category')),
             'cover'     => Rule::requiredIf($request->has('cover')),
         ]);
 

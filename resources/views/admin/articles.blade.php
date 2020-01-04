@@ -51,11 +51,14 @@
         <form action="" method="post">
           @csrf
 
-          <div class="form-group">
-            <label for="">Kategori</label>
-            <input type="text" name="category" id="category" class="form-control @error('category') is-invalid @enderror"
-              placeholder="" value="{{ old('email') ? old('email') : '' }}">
-          </div>
+        <div class="form-group">
+          <label for="">Kategori</label>
+          <select class="form-control" name="category_id" id="category_id">
+            @foreach ($categories as $item)
+                <option value="{{ $item->id }}"> {{ $item->name }} </option>
+            @endforeach
+          </select>
+        </div>
 
           <div class="form-group">
             <label for="">Title</label>

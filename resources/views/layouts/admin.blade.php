@@ -30,6 +30,10 @@
               'icon'  => 'fas fa-fw fa-tachometer-alt',
               'link'  => route('admin.dashboard'),
             ],
+            'Kategori' => [
+              'icon'  => 'fas fa-tag',
+              'link'  => route('admin.categories'),
+            ],
             'Blog' => [
               'icon'  => 'fas fa-newspaper',
               'link'  => route('admin.artikel'),

@@ -27,6 +27,7 @@ Route::group(['prefix' => 'admin'], function () {
   Route::get('galeri', 'AdminController@galleries')->name('admin.gallery');
   Route::get('review', 'AdminController@reviews')->name('admin.review');
   Route::get('user', 'AdminController@users')->name('admin.user');
+  Route::get('kategori', 'AdminController@categories')->name('admin.categories');
 });
 
 Route::group(['prefix' => 'blog'], function () {
@@ -38,7 +39,6 @@ Route::group(['prefix' => 'sitemap'], function () {
   Route::get('/', 'SitemapController@index');
   Route::get('/blog', 'SitemapController@articles');
 });
-
 
 Route::group(['prefix' => 'artisan'], function () {
   Route::get('/{command}', function ($command) {

@@ -19,7 +19,7 @@
       Komentar
 
       <i class="fa fa-tag ml-2"></i>
-      <a href="" class=""> {{ $item->category}}</a>
+      <a href="" class=""> {{ $item->category->name}}</a>
     </span>
   </p>
   {!! strip_tags(Str::limit($item->content, 100)) !!}

@@ -18,15 +18,14 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::group(['prefix' => 'v1'], function () {
+    // Route::get('/file', 'TestController@file_index')->name('file.index');
+    // Route::post('/file', 'TestController@file_upload')->name('file.upload');
+    // Route::delete('/file/{id}', 'TestController@file_destroy')->name('file.destroy');
+    // Route::post('/file/destroy', 'TestController@file_delete')->name('file.delete');
     Route::resource('/artikel', 'ArticleController');
     Route::resource('/user', 'UserController');
-    Route::get('/file', 'TestController@file_index')->name('file.index');
-    Route::post('/file', 'TestController@file_upload')->name('file.upload');
-    Route::delete('/file/{id}', 'TestController@file_destroy')->name('file.destroy');
-    Route::post('/file/destroy', 'TestController@file_delete')->name('file.delete');
-    Route::get('/reviews', 'ReviewController@index')->name('review.index');
-    Route::post('/reviews', 'ReviewController@store')->name('review');
-    Route::delete('/reviews', 'ReviewController@destroy')->name('review.destroy');
+    Route::resource('/reviews', 'ReviewController');
+    Route::resource('/categories', 'CategoryController');
 });
 
 Route::resource('v2/file', 'DocumentController', [

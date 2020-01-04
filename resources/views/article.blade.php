@@ -24,7 +24,7 @@
         {{ $item->created_at->format('F d, Y') }} 
         <br/>
         <i class="fa fa-tag" aria-hidden="true"></i>
-        {{ $item->category}}
+        {{ $item->category->name }}
       </p>
     </div>
     <div class="card-body">
@@ -146,7 +146,7 @@
     
     $.ajax({
       type: "POST",
-      url: "{{ route('review') }}",
+      url: "{{ route('reviews.store') }}",
       data: data,
       success: function (response) {
         $('#formKomentar').trigger('reset');

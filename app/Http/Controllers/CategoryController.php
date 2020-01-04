@@ -4,82 +4,76 @@ namespace App\Http\Controllers;
 
 use App\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
 
 class CategoryController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        //
+        $items = Category::all();
+        return datatables($items)
+            ->addIndexColumn()
+            ->addColumn('action', function ($items) {
+                return
+                    '
+                    <a href="" class="btnEdit mx-0 btn btn-secondary btn-sm btn-icon-split" data-url="' . route('categories.destroy', $items->id) . '"> <span class="icon text-white-50"> <i class="fas fa-pencil-alt"></i> </span> </a>
+                    <a href="" class="btnDelete btn btn-danger btn-icon-split btn-sm" data-url="' . route('categories.destroy', $items->id) . '"><span class="icon text-white-50"> <i class="fas fa-trash-alt"></i> </span></a>
+                ';
+            })
+            ->addColumn('content', function ($items) {
+                $data = count($items->Article);
+                return $data;
+            })
+            ->toJson();
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        //
+        return view('admin.article.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name'      => ['required', 'string', 'max:255'],
+        ]);
+
+        $item = Category::create($request->all());
+
+        return response()->json([
+            'item'  => $request->all(),
+            'status' => 'Store Success'
+        ]);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Category  $category
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Category $category)
+    public function show($id)
     {
-        //
+        return response()->json(Category::find($id));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Category  $category
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Category $category)
+    public function edit($id)
     {
-        //
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Category  $category
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Category $category)
+    public function update(Request $request, $id)
     {
-        //
+        $item = Category::find($id);
+        $item->update($request->all());
+
+        return response()->json([
+            'data'      => $request->all(),
+            'status'    => 'Update Success',
+        ]);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Category  $category
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Category $category)
+    public function destroy($id)
     {
-        //
+        $item = Category::find($id);
+        $item->delete();
+
+        return response()->json([
+            'item'      => $item,
+            'status'    => 'Delete Success'
+        ]);
     }
 }

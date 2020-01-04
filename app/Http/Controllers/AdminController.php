@@ -17,13 +17,16 @@ class AdminController extends Controller
                 'categories'    => \App\Category::all(),
                 'articles'      => \App\Article::all(),
                 'documents'     => \App\Document::all(),
+                'reviews'       => \App\Review::all(),
             ]
         ]);
     }
 
     public function articles()
     {
-        return view('admin.articles');
+        return view('admin.articles')->with([
+            'categories' => \App\Category::all()
+        ]);
     }
 
     public function files()
@@ -49,5 +52,10 @@ class AdminController extends Controller
     public function users()
     {
         return view('admin.users');
+    }
+
+    public function categories()
+    {
+        return view('admin.categories');
     }
 }
