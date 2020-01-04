@@ -58,9 +58,12 @@
                         </div>
 
                         <div class="form-group mb-0">
-                            <button type="submit" class="btn btn-primary">
+                            <button type="submit" class="btn btn-primary btn-block">
                                 {{ __('Register') }}
                             </button>
+                            <a href="{{ route('login') }}" class="btn btn-block btn-secondary">
+                                {{ __('Login') }}
+                            </a>
                         </div>
                     </form>
                 </div>

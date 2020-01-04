@@ -13,9 +13,9 @@ $factory->define(Article::class, function (Faker $faker) {
         'title'     => $title,
         'slug'      => Str::slug($title),
         'content'   => $faker->realText($maxNbChars = 1000, $indexSize = 5),
-        'category'  => $faker->randomElement(['Blog', 'Kegiatan', 'Pengumuman']),
         'cover'     => $faker->randomElement([
             'images/cover.svg',
-        ])
+            ]),
+        'category_id'  => factory(\App\Category::class),
     ];
 });

@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Article;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Str;
@@ -22,6 +21,9 @@ class ArticleController extends Controller
                     <a href="' . route('artikel.show', $items->id) . '" class="btnEdit mx-0 btn btn-secondary btn-sm btn-icon-split"> <span class="icon text-white-50"> <i class="fas fa-pencil-alt"></i> </span> </a>
                     <a href="" class="btnDelete btn btn-danger btn-icon-split btn-sm" data-url="' . route('artikel.destroy', $items->id) . '"><span class="icon text-white-50"> <i class="fas fa-trash-alt"></i> </span></a>
                 ';
+            })
+            ->addColumn('category', function ($items) {
+                return $items->category->name;
             })
             ->editColumn('cover', function ($items) {
                 return '<img style="" class="rounded img-fluid" src="../' . $items->cover . '"/>';

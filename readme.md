@@ -22,3 +22,12 @@
 
 
 ## FaQ
+
+Courses
+- name
+- description
+
+course_articles
+- course_id
+- article_id
+- part

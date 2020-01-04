@@ -6,18 +6,18 @@ class AdminController extends Controller
 {
     public function __construct()
     {
-        $this->middleware(['auth', 'admin']);
+        // $this->middleware(['auth', 'admin']);
     }
 
     public function dashboard()
     {
         return view('admin.dashboard')->with([
-            'articles'      => \App\Article::whereIn('category', ['kegiatan', 'blog'])->orderBy('updated_at', 'desc')->get(),
-            'photos'        => \App\Document::where('category', 'kegiatan')->get(),
-            'sliders'       => \App\Document::where('category', 'slider')->get(),
-            'news'          => \App\Article::whereIn('category', ['pengumuman'])->orderBy('updated_at', 'desc')->paginate(5),
-            'documents'     => \App\Document::whereIn('category', ['Postingan', 'Dokumen'])->orderBy('updated_at', 'desc')->paginate(5),
-            'users'         => \App\User::all(),
+            'data' => [
+                'users'         => \App\User::all(),
+                'categories'    => \App\Category::all(),
+                'articles'      => \App\Article::all(),
+                'documents'     => \App\Document::all(),
+            ]
         ]);
     }
 
