@@ -42,4 +42,17 @@ class PageController extends Controller
             return view('404');
         endif;
     }
+
+    public function dokumen_show($slug) {
+
+    }   
+     
+    public function kategori_show($slug) {
+
+    }
+    
+    public function review_show($slug) {
+
+    }
+    
 }

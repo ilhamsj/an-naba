@@ -23,7 +23,6 @@ Route::group(['prefix' => 'admin'], function () {
   Route::get('', 'AdminController@dashboard')->name('admin.dashboard');
   Route::get('artikel', 'AdminController@articles')->name('admin.artikel');
   Route::get('foto', 'AdminController@files')->name('admin.foto');
-  Route::get('dokumen', 'AdminController@documents')->name('admin.document');
   Route::get('galeri', 'AdminController@galleries')->name('admin.gallery');
   Route::get('review', 'AdminController@reviews')->name('admin.review');
   Route::get('user', 'AdminController@users')->name('admin.user');
@@ -35,17 +34,25 @@ Route::group(['prefix' => 'blog'], function () {
   Route::get('/{id}', 'PageController@artikel_show')->name('user.artikel.show');
 });
 
+Route::group(['prefix' => 'dokumen'], function () {
+  Route::get('/', 'PageController@artikel_index')->name('user.dokumen.index');
+  Route::get('/{id}', 'PageController@dokumen_show')->name('user.dokumen.show');
+});
+
+Route::group(['prefix' => 'kategori'], function () {
+  Route::get('/', 'PageController@artikel_index')->name('user.kategori.index');
+  Route::get('/{id}', 'PageController@kategori_show')->name('user.kategori.show');
+});
+
+Route::group(['prefix' => 'review'], function () {
+  Route::get('/', 'PageController@artikel_index')->name('user.review.index');
+  Route::get('/{id}', 'PageController@review_show')->name('user.review.show');
+});
+
 Route::group(['prefix' => 'sitemap'], function () {
   Route::get('/', 'SitemapController@index');
   Route::get('/blog', 'SitemapController@articles');
-});
-
-Route::group(['prefix' => 'artisan'], function () {
-  Route::get('/{command}', function ($command) {
-    Artisan::call('migrate:fresh --'.$command);
-  });
-  
-  Route::get('', function () {
-    Artisan::call('migrate:fresh');
-  });
+  Route::get('/dokumen', 'SitemapController@documents');
+  Route::get('/kategori', 'SitemapController@categories');
+  Route::get('/review', 'SitemapController@reviews');
 });

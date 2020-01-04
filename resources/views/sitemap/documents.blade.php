@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   @foreach ($items as $item)
     <url>
-      <loc>{{ route('user.artikel.show', $item->slug) }}</loc>
+      <loc>{{ route('user.dokumen.show', $item->id) }}</loc>
       <lastmod>{{ $item->created_at->toAtomString() }}</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.6</priority>
