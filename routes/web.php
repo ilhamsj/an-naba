@@ -11,6 +11,10 @@
 |
 */
 
+// use Illuminate\Routing\Route;
+use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Auth;
+
 Auth::routes();
 Route::get('/', 'PageController@welcome')->name('welcome');
 Route::get('/home', 'HomeController@index')->name('home');
@@ -33,4 +37,15 @@ Route::group(['prefix' => 'blog'], function () {
 Route::group(['prefix' => 'sitemap'], function () {
   Route::get('/', 'SitemapController@index');
   Route::get('/blog', 'SitemapController@articles');
+});
+
+
+Route::group(['prefix' => 'artisan'], function () {
+  Route::get('/{command}', function ($command) {
+    Artisan::call('migrate:fresh --'.$command);
+  });
+  
+  Route::get('', function () {
+    Artisan::call('migrate:fresh');
+  });
 });
