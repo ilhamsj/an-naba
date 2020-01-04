@@ -118,15 +118,14 @@
         ],
         'Peta Situs' => [
           'Blog'       => route('user.artikel.index'),
-          'Kegiatan'      => route('user.artikel.index'),
-        ],
-        'Ikuti Kami' => [
-          'Facebook'      => route('user.artikel.index'),
-          'Instagram'     => route('user.artikel.index'),
+          'Dokumen'      => route('user.artikel.index'),
+          'Kategori'      => route('user.artikel.index'),
+          'Review'      => route('user.artikel.index'),
+          'Sitemap'      => route('sitemap.index'),
         ],
         'Gabung' => [
-          'Grub Facebook' => route('user.artikel.index'),
-          'Telegram'      => route('user.artikel.index'),
+          'Grup Facebook' => route('user.artikel.index'),
+          'Grup Telegram'      => route('user.artikel.index'),
         ],
       ];
   @endphp
@@ -141,7 +140,7 @@
             <ul class="nav flex-column">
                 @foreach ($val as $k => $v)
                   <li class="nav-item">
-                    <a href="{{ $v }}" class="nav-link text-light pl-0">{!! $k !!}</a>
+                    <a href="{{ $v }}" target="_blank" class="nav-link text-light pl-0">{!! $k !!}</a>
                   </li>
                 @endforeach
             </ul>
@@ -190,7 +189,7 @@
       }
     }
 
-    $('footer').first().find('.col-6:first-child').toggleClass('col-md col-md-5')
+    $('footer').first().find('.col-6:first-child').toggleClass('col-md col-md-7')
 
   });
 

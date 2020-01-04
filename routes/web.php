@@ -50,9 +50,9 @@ Route::group(['prefix' => 'review'], function () {
 });
 
 Route::group(['prefix' => 'sitemap'], function () {
-  Route::get('/', 'SitemapController@index');
-  Route::get('/blog', 'SitemapController@articles');
-  Route::get('/dokumen', 'SitemapController@documents');
-  Route::get('/kategori', 'SitemapController@categories');
-  Route::get('/review', 'SitemapController@reviews');
+  Route::get('/', 'SitemapController@index')->name('sitemap.index');
+  Route::get('/blog', 'SitemapController@articles')->name('sitemap.articles');
+  Route::get('/dokumen', 'SitemapController@documents')->name('sitemap.documents');
+  Route::get('/kategori', 'SitemapController@categories')->name('sitemap.categories');
+  Route::get('/review', 'SitemapController@reviews')->name('sitemap.reviews');
 });
