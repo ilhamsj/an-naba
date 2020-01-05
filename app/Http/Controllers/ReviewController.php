@@ -19,7 +19,13 @@ class ReviewController extends Controller
             ->addColumn('email', function ($items) {
                 return $items->user->email;
             })
-            ->rawColumns(['user_id', 'name', 'email'])
+            ->addColumn('action', function ($items) {
+                return
+                    '
+                    <a href="" class="btnDelete btn btn-primary btn-icon-split btn-sm" data-url="' . route('reviews.destroy', $items->id) . '"><span class="icon text-white-50"> <i class="fa fa-check"></i> </span></a>
+                ';
+            })
+            ->rawColumns(['user_id', 'name', 'email', 'action'])
             ->toJson();
     }
 

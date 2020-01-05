@@ -19,9 +19,10 @@
                 <tr>
                   <th>Name</th>
                   <th>Email</th>
+                  <th>Category</th>
                   <th>Content</th>
-                  <th>Created At</th>
-                  <th>Updated At</th>
+                  <th>Date</th>
+                  <th>Tandai</th>
                 </tr>
               </thead>
             </table>
@@ -42,13 +43,14 @@
         responsive: true,
         processing: true,
         serverSide: true,
-        ajax: "{{route('review.index')}}",
+        ajax: "{{route('reviews.index')}}",
         columns: [
           { data: 'name', name: 'name' },
           { data: 'email', name: 'email' },
+          { data: 'category', name: 'category' },
           { data: 'content', name: 'content' },
           { data: 'created_at', name: 'created_at' },
-          { data: 'updated_at', name: 'updated_at' },
+          { data: 'action', name: 'action' },
         ]
       });
   });

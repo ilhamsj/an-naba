@@ -3,7 +3,7 @@
 @section('title_page', Str::title($item->title))
 
 @section('header')
-<header class="masthead" style="background-color: #32373D">
+<header class="masthead">
   <div class="overlay"></div>
   <div class="container">
     <div class="row" style="min-height: 50vh">
@@ -42,29 +42,27 @@
         {{ count($item->Review) }} Diskusi
       </h2>
     </div>
-    <ul class="list-group list-group-flush">
+    <div class="card-body">
       @foreach ($item->Review as $key => $value)
-      <li class="list-group-item">
-        <h3>
-          <i class="fas fa-person-booth"></i>
-          {{ $value->user->name }}</h3>
-        <span class="badge badge-light"><i class="fas fa-calendar-alt"></i> {{ $value->created_at->format('F d, Y') }}</span>
-        <p>
+        <div class="row">
+          <div class="col" style="font-weight: 500">
+            {{ $value->user->name }}
+          </div>
+          <div class="col text-right">
+            {{ $value->created_at->format('F d, Y') }}
+          </div>
+        </div>
+        <div style="margin:  1vh 0 5vh 0">
           {{ strip_tags($value->content) }}
           @auth
-          @if (Auth::user()->id == $value->user_id)
-          <a href="" class="komentar">
-            <i class="fas fa-trash-alt    "></i>
-          </a>
-          @endif
+            @if (Auth::user()->id == $value->user_id)
+              <a href="" class="komentar"> <u>Hapus</u> </a>
+            @endif
           @endauth
-        </p>
-      </li>
+        </div>
       @endforeach
-    </ul>
-  </div>
 
-  <div class="card border-0 shadow-sm">
+    </div>    
     <div class="card-body">
       <h2 class="card-title">
         Tulis Komentar
@@ -123,13 +121,9 @@
     position: relative;
   }
 
-#content {
+.card-body {
     font-size: 12pt;
     text-align: justify;
-  }
-
-  .masthead {
-    background: linear-gradient(87deg,#5e72e4,#825ee4)!important;
   }
 </style>
 @endpush

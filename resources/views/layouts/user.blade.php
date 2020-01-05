@@ -23,7 +23,9 @@
       font-family: 'Poppins'
     }
 
-    .bg-custom { background-color: whitesmoke}
+  .masthead {
+    background: linear-gradient(90deg, #A34B7D, #50816E, #6FBEBE)!important;
+  }
   </style>
   @stack('styles')
 </head>
