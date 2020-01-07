@@ -100,7 +100,12 @@
 
 @endsection
 
+@push('styles')
+        <link href="{{ secure_url('vendor/datatables-responsive/dataTables.responsive.css') }}" rel="stylesheet">
+@endpush
+
 @push('scripts')
+<script src="{{ secure_url('vendor/datatables-responsive/dataTables.responsive.js') }}"></script>
 <script>
   preview_image = (event) => {
     var reader = new FileReader();

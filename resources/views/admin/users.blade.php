@@ -141,6 +141,9 @@
         $('#modalDocuments').find('.modal-footer button.btn.btn-primary').attr('id', 'btnStore').text('Simpan');
         $('#modalDocuments').modal('show');
         $('#modalDocuments').find('form').trigger('reset');
+        $('#modalDocuments').find('#password').parent().show();
+        $('#modalDocuments').find('#password_confirmation').parent().show();
+
       });
 
       // store data
@@ -178,7 +181,9 @@
 
         $('#modalDocuments').find('.modal-footer button.btn.btn-primary').attr('id', 'btnUpdate').attr('data-url', url).text('Perbarui');
         $('#modalDocuments').modal('show');
-        $('#modalDocuments').find('h5').text('Edit Data')
+        $('#modalDocuments').find('h5').text('Edit Data');
+        $('#modalDocuments').find('#password').parent().hide();
+        $('#modalDocuments').find('#password_confirmation').parent().hide();
 
         $.ajax({
           type: "GET",
