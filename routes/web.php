@@ -56,12 +56,3 @@ Route::group(['prefix' => 'sitemap'], function () {
   Route::get('/kategori', 'SitemapController@categories')->name('sitemap.categories');
   Route::get('/review', 'SitemapController@reviews')->name('sitemap.reviews');
 });
-
-Route::get('resize/{width}', function ($width) {
-  $img = Image::make('images/i-get-through-the-subject-go-on-their-heads.png');
-  $img->resize($width, null, function ($constraint) {
-    $constraint->aspectRatio();
-  });
-
-  return $img->response('jpg');
-});

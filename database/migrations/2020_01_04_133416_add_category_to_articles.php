@@ -14,7 +14,7 @@ class AddCategoryToArticles extends Migration
     public function up()
     {
         Schema::table('articles', function (Blueprint $table) {
-            $table->bigInteger('category_id')->unsigned()->index();
+            $table->bigInteger('category_id')->unsigned()->index()->default(1);
             $table->foreign('category_id')
                 ->references('id')
                 ->on('categories')
