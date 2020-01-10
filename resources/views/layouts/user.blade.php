@@ -52,15 +52,15 @@
             'icon'  => 'fas fa-fw fa-tachometer-alt',
             'link'  => route('welcome'),
           ],
-          'Blog' => [
+          'Updates' => [
             'icon'  => 'fas fa-fw fa-tachometer-alt',
             'link'  => route('user.artikel.index'),
           ],
-          'Kegiatan' => [
+          'Services' => [
             'icon'  => 'fas fa-fw fa-tachometer-alt',
             'link'  => '#',
           ],
-          'Kontak' => [
+          'Contact Us' => [
             'icon'  => 'fas fa-fw fa-tachometer-alt',
             'link'  => route('user.artikel.show', 'kontak'),
           ],
@@ -68,7 +68,7 @@
     @endphp
 
   <!-- Navigation -->
-  <nav class="navbar navbar-expand-lg navbar-light fixed-top shadow-sm" id="mainNav">
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top shadow-sm" id="mainNav">
     <div class="container">
       <a class="navbar-brand" href="{{ env('APP_URL') }}"> {{ env('APP_NAME') }}</a>
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
@@ -101,7 +101,6 @@
           <ul class="list-group list-group-flush">
             @foreach ($news as $item)
               <li class="list-group-item px-0 mb-1" style="font-size: medium">
-                <img src="{{ secure_url($item->cover) }}" class="rounded" style="max-height: 70px" alt="" srcset=""> <br/>
                 <span class="" style="font-size: small">{{ $item->created_at->format('d F Y') }}</span> <br/>
                 <a class="" style="font-weight: 500" href="{{ strip_tags(route('user.artikel.show', $item->slug)) }}">{{ $item->title }}</a> <br/>
               </li>
@@ -118,16 +117,14 @@
         env('APP_NAME') => [
           env('APP_MOTTO') => '#',
         ],
-        'Peta Situs' => [
-          'Blog'       => route('user.artikel.index'),
-          'Dokumen'      => route('user.artikel.index'),
-          'Kategori'      => route('user.artikel.index'),
-          'Review'      => route('user.artikel.index'),
+        'Quick Links' => [
+          'Tentang Kami'       => route('user.artikel.index'),
+          'Portofolio'      => route('user.artikel.index'),
           'Sitemap'      => route('sitemap.index'),
         ],
-        'Gabung' => [
-          'Grup Facebook' => route('user.artikel.index'),
-          'Grup Telegram'      => route('user.artikel.index'),
+        'Contact Us' => [
+          'Facebook' => route('user.artikel.index'),
+          'Telegram'      => route('user.artikel.index'),
         ],
       ];
   @endphp
@@ -159,8 +156,7 @@
       <div class="row justify-content-center">
         <div class="col-12">
           <a href="" class="text-light">
-            {{-- <i class="fa fa-copyright" aria-hidden="true"></i> {{ env('APP_NAME')  . date(' Y')}} --}}
-            Made with <i class="fa fa-heartbeat" aria-hidden="true"></i> in Yogyakarta, Indonesia
+            <i class="fa fa-copyright" aria-hidden="true"></i> {{ date(' Y ' ) . env('APP_NAME')}} All Right Reserved
           </a>
         </div>
       </div>

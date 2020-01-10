@@ -6,7 +6,7 @@
 <header class="masthead">
   <div class="overlay"></div>
   <div class="container">
-    <div class="row" style="min-height: 50vh">
+    <div class="row" style="min-height: 9.7vh">
       <div class="col-lg col-md-10 mx-auto">
 
       </div>
@@ -16,31 +16,18 @@
 @endsection
 
 @section('content')
-  <div class="card mb-4 p-0 border-0 shadow-sm">
+  <div class="card p-0 shadow-sm border-0">
+    <img class="card-img-top img-fluid rounded" src="../{{$item->cover}}" alt="" srcset="">
     <div class="card-body">
       <h1>{{ Str::title($item->title) }}</h1>
-      <p>
         <i class="fa fa-calendar"></i>
         {{ $item->created_at->format('F d, Y') }} 
         <br/>
         <i class="fa fa-tag" aria-hidden="true"></i>
         {{ $item->category->name }}
-      </p>
-    </div>
-    <div class="card-body">
-        <img class="img-fluid rounded" src="../{{$item->cover}}" alt="" srcset="">
     </div>
     <div class="card-body" id="content">
       {!! $item->content !!}
-    </div>
-  </div>
-
-  <div class="card border-0 shadow-sm mb-4">
-    <div class="card-body">
-      <h2 class="card-title">
-        <i class="fa fa-comments" aria-hidden="true"></i>
-        {{ count($item->Review) }} Diskusi
-      </h2>
     </div>
     <div class="card-body">
       @foreach ($item->Review as $key => $value)
@@ -63,13 +50,6 @@
       @endforeach
 
     </div>    
-    <div class="card-body">
-      <h2 class="card-title">
-        Tulis Komentar
-        <i class="fas fa-comment"></i>
-      </h2>
-    </div>
-
     @guest
     <div class="card-body">
       Silahkan <u>Login</u> ! untuk dapat komentar
@@ -116,14 +96,15 @@
     background-color: white
   }
 
-  #ini_content {
+  /* #ini_content {
     top: -155px;
     position: relative;
-  }
+  } */
 
 .card-body {
-    font-size: 12pt;
-    text-align: justify;
+    font-size: 13pt;
+    font-family: Arial, Helvetica, sans-serif
+    /* text-align: justify; */
   }
 </style>
 @endpush
